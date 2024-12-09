@@ -2,10 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
-@include base {}
-@include componentns {}
-@include utilities {}
+@layer base {}
+@layer componentns {}
+@layer utilities {}
 
-.my-custom-class {
-  
+.glass-only {
+  @apply bg-gray-900 border-b border-gray-600 bg-opacity-30 border-opacity-30 backdrop-filter backdrop-blur-md;
+}
+.glass-1 {
+  @apply bg-gray-900 border border-gray-600 bg-opacity-30 backdrop-filter backdrop-blur-md;
+}
+.glass-2 {
+  @apply p-10 text-gray-100 bg-gray-900 border border-gray-600 bg-opacity-30 backdrop-filter backdrop-blur-md;
+}
+.pane {
+  @apply p-10 pb-12 text-gray-100 bg-gray-900 border border-gray-600 bg-opacity-30 backdrop-filter backdrop-blur-md;
 }
