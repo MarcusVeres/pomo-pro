@@ -4,7 +4,13 @@ var pp = (function(){
   let restTime = 5;
   let workTime = 15; // TODO - convert from seconds to ms later. Use low values for testing. 
 
-  // SETTINGS
+  // INTERNAL 
+  let displayMinutes = null;
+  let displaySeconds = null;
+  let intervalFunction = null;
+  let ticks = 0;
+
+  // SETTING
   function SetWorkTime( input )
   {
     workTime = Sanitize(input);
@@ -24,10 +30,42 @@ var pp = (function(){
     return input;
   }
 
-  // RUNTIME
+  // OPERATING 
+  const startCounter = () => {
+    if( !intervalFunction ) {
+      intervalFunction = setInterval( () => {
+        
+        console.log( "counting" );
+        ticks++;
+        updateDisplay();
+
+      }, 1000 );
+    }
+  }
+  const pauseCounter = () => {
+    console.log( "Pausing..." );
+    clearInterval( intervalFunction );
+    intervalFunction = null;
+  }
+  const resetCounter = () => {
+
+  }
+
+  // UI 
+  const updateDisplay = () => {
+    // NOTE :: This is why strongly typed languages are better...
+    displayMinutes.innerHTML = ticks;
+    displaySeconds.innerHTML = ticks * 10;
+  }
+
+  // INITIALIZING
   function Init()
   {
-    console.log( "Starting" );
+    displayMinutes = document.getElementById("display-minutes");
+    displaySeconds = document.getElementById("display-seconds");
+
+    console.log( "Starting..." );
+    startCounter();
 
   }
   Init();
