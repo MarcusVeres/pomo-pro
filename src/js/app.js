@@ -14,17 +14,17 @@ const app = {
     const timer = new Timer();
     const ui = new UI();
 
-    // INIT
+    // SET DEPENDENCIES 
     timer.init( settings, ui );
     ui.init( timer );
 
-    // START LOGIC ... could be moved to timer... 
+    // SET TIMER VALUES BASED ON SETTINGS 
     timer.initTimeObject();
 
+    // START 
     if( settings.autoplay ) {
       timer.startCounter();
-    }
-    
+    }    
   }
 };
 

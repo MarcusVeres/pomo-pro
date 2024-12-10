@@ -2,7 +2,7 @@ export class Timer
 {
   constructor()
   {
-    // DEPENDENCIES 
+    // DECLARE DEPENDENCIES 
     this.settings = null;
     this.ui = null;
 
@@ -15,6 +15,7 @@ export class Timer
   }
   init( settings , ui )
   {
+    // SET DEPENDENCIES 
     this.settings = settings;
     this.ui = ui;
   }
