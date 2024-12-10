@@ -1,8 +1,14 @@
+// TODO - introduce a way to track time when user pressed "pause" regardless of mode.
+// IDEA - pressing "pause" starts a new timer. If you un-pause, it'll stop that timer. "Paused time for..."
+// HELP - helps track distractions. helps track time (e.g. you were pulled into something else)
+
 var pp = (function(){
 
   // VARS
-  let restTime = 5;
-  let workTime = 900; // TODO - convert from seconds to ms later. Use low values for testing. 
+  let autoplay = true;
+  let restTime = 3; //00;
+  let workTime = 9; //00;
+
 
   // INTERNAL 
   let controlPause = null;
@@ -11,7 +17,9 @@ var pp = (function(){
   
   let displayMinutes = null;
   let displaySeconds = null;
+
   let intervalFunction = null;
+  let isWorking = true;
 
   let ticks = 0;
   let timeObject = new Date();
@@ -22,11 +30,29 @@ var pp = (function(){
     // TODO -- setings // pause the timer... should start break timer? or hidden break timer... or ... what? - should track in some way. 
 
     timeObject.setHours(0,0,0,0); // Sets a blank date, today at midnight 
-    timeObject.setSeconds( workTime );
+
+    if( isWorking ) {
+      timeObject.setSeconds( workTime );
+    } else {
+      timeObject.setSeconds( restTime );
+    }
 
     updateDisplays();
   }
+  const checkGameOver = () => {
+    if(  timeObject.getMinutes() == 0 && timeObject.getSeconds() == 0 ) {
 
+      pauseCounter();
+      switchModes();
+      startCounter();
+
+      return true;
+    }
+  }
+  const switchModes = () => {
+    isWorking = !isWorking;    
+    initTimeObject();
+  }
 
   // SETTING
   function SetWorkTime( input )
@@ -58,9 +84,12 @@ var pp = (function(){
         console.log( "counting" );
         ticks++;
 
+        if( checkGameOver() ) { return; }
+        
         timeObject.setSeconds( timeObject.getSeconds() - 1 );
 
         updateDisplays();
+
 
       }, 1000 );
     }
@@ -114,7 +143,10 @@ var pp = (function(){
     bindDisplays();
 
     initTimeObject();
-    // startCounter(); // AUTO-START (testing)
+
+    if( autoplay ) {
+      startCounter();
+    }
   }
   Init();
 
