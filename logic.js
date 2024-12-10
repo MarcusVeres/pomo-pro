@@ -5,6 +5,9 @@ var pp = (function(){
   let workTime = 15; // TODO - convert from seconds to ms later. Use low values for testing. 
 
   // INTERNAL 
+  let controlPause = null;
+  let controlReset = null;
+  let controlStart = null;
   let displayMinutes = null;
   let displaySeconds = null;
   let intervalFunction = null;
@@ -48,7 +51,9 @@ var pp = (function(){
     intervalFunction = null;
   }
   const resetCounter = () => {
-
+    pauseCounter();
+    ticks = 0;
+    updateDisplay();
   }
 
   // UI 
@@ -61,6 +66,14 @@ var pp = (function(){
   // INITIALIZING
   function Init()
   {
+    controlPause = document.getElementById("control-pause");
+    controlReset = document.getElementById("control-reset");
+    controlStart = document.getElementById("control-start");
+
+    controlPause.addEventListener("click" , () => { pauseCounter(); });
+    controlReset.addEventListener("click" , () => { resetCounter(); });
+    controlStart.addEventListener("click" , () => { startCounter(); });
+
     displayMinutes = document.getElementById("display-minutes");
     displaySeconds = document.getElementById("display-seconds");
 
