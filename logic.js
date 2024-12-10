@@ -89,9 +89,18 @@ var pp = (function(){
     displaySeconds = document.getElementById("display-seconds");
   }
 
+  const formatTime = ( input ) => {
+    let output = input;
+    if( output < 10 )
+    {
+      output = "0" + input;
+    }
+    return output;
+  }
+
   const updateDisplays = () => {
-    displayMinutes.innerHTML = timeObject.getMinutes(); // ticks;
-    displaySeconds.innerHTML = timeObject.getSeconds(); // ticks * 10;
+    displayMinutes.innerHTML = formatTime( timeObject.getMinutes() ); // ticks;
+    displaySeconds.innerHTML = formatTime( timeObject.getSeconds() ); // ticks * 10;
   }
 
 
