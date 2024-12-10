@@ -31,9 +31,9 @@ export class Timer
   {
     if( this.timeObject.getMinutes() == 0 && this.timeObject.getSeconds() == 0 ) {
 
-      pauseCounter();
-      switchModes();
-      startCounter();
+      this.pauseCounter();
+      this.switchModes();
+      this.startCounter();
 
       return true;
     }
@@ -41,8 +41,8 @@ export class Timer
 
   switchModes()
   {
-    isWorking = !isWorking;    
-    initTimeObject();
+    this.isWorking = !this.isWorking;    
+    this.initTimeObject();
   }
 
   // OPERATING 
