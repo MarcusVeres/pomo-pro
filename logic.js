@@ -57,6 +57,9 @@ var pp = (function(){
         
         console.log( "counting" );
         ticks++;
+
+        timeObject.setSeconds( timeObject.getSeconds() - 1 );
+
         updateDisplays();
 
       }, 1000 );
