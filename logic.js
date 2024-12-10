@@ -16,6 +16,7 @@ var pp = (function(){
   let controlStart = null;
   
   let displayMinutes = null;
+  let displayMode = null;
   let displaySeconds = null;
 
   let intervalFunction = null;
@@ -85,7 +86,7 @@ var pp = (function(){
         ticks++;
 
         if( checkGameOver() ) { return; }
-        
+
         timeObject.setSeconds( timeObject.getSeconds() - 1 );
 
         updateDisplays();
@@ -118,6 +119,7 @@ var pp = (function(){
   }
   const bindDisplays = () => {
     displayMinutes = document.getElementById("display-minutes");
+    displayMode = document.getElementById("display-mode");
     displaySeconds = document.getElementById("display-seconds");
   }
 
@@ -133,6 +135,8 @@ var pp = (function(){
   const updateDisplays = () => {
     displayMinutes.innerHTML = formatTime( timeObject.getMinutes() ); // ticks;
     displaySeconds.innerHTML = formatTime( timeObject.getSeconds() ); // ticks * 10;
+
+    displayMode.innerHTML = isWorking ? 'WORK' : 'REST';
   }
 
 
