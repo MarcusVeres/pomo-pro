@@ -2,16 +2,31 @@ var pp = (function(){
 
   // VARS
   let restTime = 5;
-  let workTime = 15; // TODO - convert from seconds to ms later. Use low values for testing. 
+  let workTime = 900; // TODO - convert from seconds to ms later. Use low values for testing. 
 
   // INTERNAL 
   let controlPause = null;
   let controlReset = null;
   let controlStart = null;
+  
   let displayMinutes = null;
   let displaySeconds = null;
   let intervalFunction = null;
+
   let ticks = 0;
+  let timeObject = new Date();
+
+
+  // TIME LOGIC 
+  const initTimeObject = () => {
+    // TODO -- setings // pause the timer... should start break timer? or hidden break timer... or ... what? - should track in some way. 
+
+    timeObject.setHours(0,0,0,0); // Sets a blank date, today at midnight 
+    timeObject.setSeconds( workTime );
+
+    updateDisplays();
+  }
+
 
   // SETTING
   function SetWorkTime( input )
@@ -32,6 +47,7 @@ var pp = (function(){
 
     return input;
   }
+
 
   // OPERATING 
   const startCounter = () => {
@@ -57,6 +73,7 @@ var pp = (function(){
     updateDisplays();
   }
 
+
   // UI 
   const bindControls = () => {
     controlPause = document.getElementById("control-pause");
@@ -73,20 +90,24 @@ var pp = (function(){
   }
 
   const updateDisplays = () => {
-    // NOTE :: This is why strongly typed languages are better...
-    displayMinutes.innerHTML = ticks;
-    displaySeconds.innerHTML = ticks * 10;
+    displayMinutes.innerHTML = timeObject.getMinutes(); // ticks;
+    displaySeconds.innerHTML = timeObject.getSeconds(); // ticks * 10;
   }
+
 
   // INITIALIZING
   function Init()
   {
     bindControls();
     bindDisplays();
+
+    initTimeObject();
     // startCounter(); // AUTO-START (testing)
   }
   Init();
 
+
+  // RETURN OBJECT 
   return {
     SetRest: SetRestTime,
     SetWork: SetWorkTime,
