@@ -41,7 +41,7 @@ var pp = (function(){
         
         console.log( "counting" );
         ticks++;
-        updateDisplay();
+        updateDisplays();
 
       }, 1000 );
     }
@@ -54,11 +54,25 @@ var pp = (function(){
   const resetCounter = () => {
     pauseCounter();
     ticks = 0;
-    updateDisplay();
+    updateDisplays();
   }
 
   // UI 
-  const updateDisplay = () => {
+  const bindControls = () => {
+    controlPause = document.getElementById("control-pause");
+    controlReset = document.getElementById("control-reset");
+    controlStart = document.getElementById("control-start");
+
+    controlPause.addEventListener("click" , () => { pauseCounter(); });
+    controlReset.addEventListener("click" , () => { resetCounter(); });
+    controlStart.addEventListener("click" , () => { startCounter(); });
+  }
+  const bindDisplays = () => {
+    displayMinutes = document.getElementById("display-minutes");
+    displaySeconds = document.getElementById("display-seconds");
+  }
+
+  const updateDisplays = () => {
     // NOTE :: This is why strongly typed languages are better...
     displayMinutes.innerHTML = ticks;
     displaySeconds.innerHTML = ticks * 10;
@@ -67,17 +81,8 @@ var pp = (function(){
   // INITIALIZING
   function Init()
   {
-    controlPause = document.getElementById("control-pause");
-    controlReset = document.getElementById("control-reset");
-    controlStart = document.getElementById("control-start");
-
-    controlPause.addEventListener("click" , () => { pauseCounter(); });
-    controlReset.addEventListener("click" , () => { resetCounter(); });
-    controlStart.addEventListener("click" , () => { startCounter(); });
-
-    displayMinutes = document.getElementById("display-minutes");
-    displaySeconds = document.getElementById("display-seconds");
-
+    bindControls();
+    bindDisplays();
     // startCounter(); // AUTO-START (testing)
   }
   Init();
