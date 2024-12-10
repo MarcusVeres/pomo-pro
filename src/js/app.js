@@ -7,7 +7,7 @@ import { UI } from './ui.js';
 
 const app = {
 
-  init() {
+  start() {
 
     // DECLARE
     const settings = Config.default;
@@ -19,7 +19,7 @@ const app = {
     ui.init( timer );
 
     // SET TIMER VALUES BASED ON SETTINGS 
-    timer.initTimeObject();
+    timer.refreshTimeObject();
 
     // START 
     if( settings.autoplay ) {
@@ -28,4 +28,4 @@ const app = {
   }
 };
 
-app.init();
+app.start();

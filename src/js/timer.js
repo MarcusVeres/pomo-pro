@@ -21,7 +21,7 @@ export class Timer
   }
 
   // TIME LOGIC 
-  initTimeObject()
+  refreshTimeObject()
   {
     this.timeObject.setHours(0,0,0,0); // Sets a blank date, today at midnight 
 
@@ -49,7 +49,7 @@ export class Timer
   switchModes()
   {
     this.isWorking = !this.isWorking;    
-    this.initTimeObject();
+    this.refreshTimeObject();
   }
 
   // OPERATING 
@@ -83,7 +83,7 @@ export class Timer
     this.pauseCounter();
 
     this.ticks = 0;
-    this.initTimeObject();
+    this.refreshTimeObject();
 
     this.ui.updateDisplays();
 
