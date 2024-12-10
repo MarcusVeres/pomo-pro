@@ -6,6 +6,19 @@
 @layer componentns {}
 @layer utilities {}
 
+
+.bg-rest, 
+.bg-work {
+  @apply bg-gradient-to-r from-slate-900 via-slate-950 to-pink-900;
+}
+.bg-rest {
+  @apply to-green-900;
+}
+.bg-work {
+  /*@apply bg-gradient-to-r from-slate-900 via-slate-950 to-pink-900;*/
+  @apply to-pink-900;
+}
+
 .glass-only {
   @apply bg-gray-900 border-b border-gray-600 bg-opacity-30 border-opacity-30 backdrop-filter backdrop-blur-md;
 }

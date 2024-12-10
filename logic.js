@@ -143,14 +143,14 @@ var pp = (function(){
     {
       // TODO :: use classes, and color swatches 
       displayMode.innerHTML = 'WORK';
-      displayBG.classList.remove('to-green-900');
-      displayBG.classList.add('to-pink-900');
+      displayBG.classList.remove('bg-rest');
+      displayBG.classList.add('bg-work');
     }
     else 
     {
       displayMode.innerHTML = 'REST';
-      displayBG.classList.remove('to-pink-900');
-      displayBG.classList.add('to-green-900');
+      displayBG.classList.remove('bg-work');
+      displayBG.classList.add('bg-rest');
     }
   }
 
