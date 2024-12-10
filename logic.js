@@ -104,14 +104,18 @@ var pp = (function(){
     intervalFunction = null;
   }
   const resetCounter = () => {
-    if( pauseOnReset ) {
-      pauseCounter(); 
-    }
+    pauseCounter();
 
     ticks = 0;
     initTimeObject();
 
     updateDisplays();
+
+    if( pauseOnReset ) {
+      pauseCounter(); 
+    } else {
+      startCounter();
+    }
   }
 
 
