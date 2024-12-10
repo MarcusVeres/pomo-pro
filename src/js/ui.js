@@ -1,9 +1,11 @@
 export class UI 
 {
-  constructor( app ) 
+  constructor() 
   {
-    this.app = app;
+    // DEPENDENCIES 
+    this.timer = null;
 
+    // VARIABLES
     this.controlPause = null;
     this.controlReset = null;
     this.controlStart = null;
@@ -12,10 +14,15 @@ export class UI
     this.displayMinutes = null;
     this.displayMode = null;
     this.displaySeconds = null;  
+  }
+  init( timer )
+  {
+    // this "setter" pattern is cleaner than using "app" since it makes dependencies explicit and controllable.
+    this.timer = timer;
 
-    // NOTE - setting thisg from app.js, for now 
-    // this.bindControls();
-    // this.bindDisplays();
+    // NOTE - setting this from app.js, for now 
+    this.bindControls();
+    this.bindDisplays();
   }
 
   bindControls()
@@ -24,9 +31,9 @@ export class UI
     this.controlReset = document.getElementById("control-reset");
     this.controlStart = document.getElementById("control-start");
 
-    this.controlPause.addEventListener("click" , () => { this.app.timer.pauseCounter(); });
-    this.controlReset.addEventListener("click" , () => { this.app.timer.resetCounter(); });
-    this.controlStart.addEventListener("click" , () => { this.app.timer.startCounter(); });
+    this.controlPause.addEventListener("click" , () => { this.timer.pauseCounter(); });
+    this.controlReset.addEventListener("click" , () => { this.timer.resetCounter(); });
+    this.controlStart.addEventListener("click" , () => { this.timer.startCounter(); });
   }
   bindDisplays()
   {
@@ -48,11 +55,11 @@ export class UI
 
   updateDisplays()
   {
-    this.displayMinutes.innerHTML = this.formatTime( this.app.timer.timeObject.getMinutes() ); // ticks;
-    this.displaySeconds.innerHTML = this.formatTime( this.app.timer.timeObject.getSeconds() ); // ticks * 10;
+    this.displayMinutes.innerHTML = this.formatTime( this.timer.timeObject.getMinutes() ); // ticks;
+    this.displaySeconds.innerHTML = this.formatTime( this.timer.timeObject.getSeconds() ); // ticks * 10;
 
     // displayMode.innerHTML = isWorking ? 'WORK' : 'REST';
-    if( this.app.timer.isWorking )
+    if( this.timer.isWorking )
     {
       // TODO :: use classes, and color swatches 
       this.displayMode.innerHTML = 'WORK';

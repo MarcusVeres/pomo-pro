@@ -1,16 +1,22 @@
 export class Timer 
 {
-  constructor( app )
+  constructor()
   {
-    console.log("Timer :: constructor()");
+    // DEPENDENCIES 
+    this.settings = null;
+    this.ui = null;
 
-    this.app = app;
-
+    // VARIABLES 
     this.intervalFunction = null;
     this.isWorking = true;
 
     this.ticks = 0;
     this.timeObject = new Date();
+  }
+  init( settings , ui )
+  {
+    this.settings = settings;
+    this.ui = ui;
   }
 
   // TIME LOGIC 
@@ -19,12 +25,12 @@ export class Timer
     this.timeObject.setHours(0,0,0,0); // Sets a blank date, today at midnight 
 
     if( this.isWorking ) {
-      this.timeObject.setSeconds( this.app.settings.workTime );
+      this.timeObject.setSeconds( this.settings.workTime );
     } else {
-      this.timeObject.setSeconds( this.app.settings.restTime );
+      this.timeObject.setSeconds( this.settings.restTime );
     }
 
-    this.app.ui.updateDisplays();
+    this.ui.updateDisplays();
   }
 
   checkGameOver()
@@ -59,7 +65,7 @@ export class Timer
 
         this.timeObject.setSeconds( this.timeObject.getSeconds() - 1 );
 
-        this.app.ui.updateDisplays();
+        this.ui.updateDisplays();
 
       }, 1000 );
     }
@@ -78,9 +84,9 @@ export class Timer
     this.ticks = 0;
     this.initTimeObject();
 
-    this.app.ui.updateDisplays();
+    this.ui.updateDisplays();
 
-    if( this.app.settings.pauseOnReset ) {
+    if( this.settings.pauseOnReset ) {
       this.pauseCounter(); 
     } else {
       this.startCounter();

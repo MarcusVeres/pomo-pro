@@ -6,22 +6,23 @@ import { Timer } from './timer.js';
 import { UI } from './ui.js';
 
 const app = {
+
   init() {
 
-    this.settings = Config.default;
-    console.log( this.settings );
+    // DECLARE
+    const settings = Config.default;
+    const timer = new Timer();
+    const ui = new UI();
 
-    this.ui = new UI( this );       // create instance
-    this.timer = new Timer( this ); // pass app as reference
+    // INIT
+    timer.init( settings, ui );
+    ui.init( timer );
 
-    // Init - could be in ui constructor, but need control references 
-    this.ui.bindControls();
-    this.ui.bindDisplays();
+    // START LOGIC ... could be moved to timer... 
+    timer.initTimeObject();
 
-    this.timer.initTimeObject();
-
-    if( this.settings.autoplay ) {
-      this.timer.startCounter();
+    if( settings.autoplay ) {
+      timer.startCounter();
     }
     
   }
