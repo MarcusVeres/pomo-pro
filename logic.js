@@ -35,6 +35,7 @@ var pp = (function(){
 
   // OPERATING 
   const startCounter = () => {
+    console.log( "Starting..." );
     if( !intervalFunction ) {
       intervalFunction = setInterval( () => {
         
@@ -77,9 +78,7 @@ var pp = (function(){
     displayMinutes = document.getElementById("display-minutes");
     displaySeconds = document.getElementById("display-seconds");
 
-    console.log( "Starting..." );
-    startCounter();
-
+    // startCounter(); // AUTO-START (testing)
   }
   Init();
 
