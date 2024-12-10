@@ -48,16 +48,24 @@
     </ul>
   </nav>
 
-  <!-- TODO :: a grid seems like it would be better for this kind of layout -->
+  <!-- NOTE :: to-green-900 isn't part of the document; only in javascript... so we'd need to make a class for it -->
   <main id="display-bg" class="flex flex-col items-center justify-center min-h-screen gap-2 bg-work">
+    
+    <!-- TODO :: a grid seems like it would be better for this kind of layout -->
     <div class="flex items-center justify-center gap-2">
       <div class="px-10 py-4 text-center border rounded-[32px] shadow-xl border-opacity-80 border-slate-800 bg-black/60 backdrop-blur-lg">
         <h2 id="display-mode" class="text-center font-sans font-semibold text-[96px] p-0 leading-none tracking-normal text-white/80">
           MODE
         </h2>
       </div>
+      <!-- <div class="px-10 text-center border rounded-[32px] shadow-xl border-opacity-80 border-slate-800 bg-black/60 backdrop-blur-lg">
+        <h2 id="display-mode" class="text-center font-mono font-normal text-[96px] -mr-2 p-0 leading-none tracking-normal text-white/80">
+          LEFT
+        </h2>
+      </div> -->
     </div>
     <div class="flex items-center justify-center gap-2">
+      <!-- BLACK BG -->
       <div class="px-10 text-center border rounded-[32px] shadow-xl border-opacity-80 border-slate-800 bg-black/60 backdrop-blur-lg">
         <h2 id="display-minutes" class="text-center font-mono font-normal text-[256px] -mr-2 p-0 leading-none tracking-normal text-white/80">
           15
@@ -69,6 +77,19 @@
         </h2>
       </div>
     </div>
+
+    <!-- WHITE BG -->
+    <!-- <div class="relative px-10 text-center rounded-lg shadow-xl bg-white/20 backdrop-blur-lg">
+      <h2 class="text-center font-mono font-normal text-[192px] -mr-2 p-0 leading-none tracking-tight text-black">
+        25
+      </h2>
+    </div>
+    <div class="relative px-10 text-center rounded-lg shadow-xl bg-white/20 backdrop-blur-lg">
+      <h2 class="text-right font-mono font-normal text-[192px] -mr-2 p-0 leading-none tracking-tight text-black">
+        00
+      </h2>
+    </div> -->
+
   </main>
 
   <script type="module" src="src/js/app.js"></script>
