@@ -15,6 +15,7 @@ var pp = (function(){
   let controlReset = null;
   let controlStart = null;
   
+  let displayBG = null;
   let displayMinutes = null;
   let displayMode = null;
   let displaySeconds = null;
@@ -118,6 +119,7 @@ var pp = (function(){
     controlStart.addEventListener("click" , () => { startCounter(); });
   }
   const bindDisplays = () => {
+    displayBG = document.getElementById("display-bg");
     displayMinutes = document.getElementById("display-minutes");
     displayMode = document.getElementById("display-mode");
     displaySeconds = document.getElementById("display-seconds");
@@ -136,7 +138,20 @@ var pp = (function(){
     displayMinutes.innerHTML = formatTime( timeObject.getMinutes() ); // ticks;
     displaySeconds.innerHTML = formatTime( timeObject.getSeconds() ); // ticks * 10;
 
-    displayMode.innerHTML = isWorking ? 'WORK' : 'REST';
+    // displayMode.innerHTML = isWorking ? 'WORK' : 'REST';
+    if( isWorking )
+    {
+      // TODO :: use classes, and color swatches 
+      displayMode.innerHTML = 'WORK';
+      displayBG.classList.remove('to-green-900');
+      displayBG.classList.add('to-pink-900');
+    }
+    else 
+    {
+      displayMode.innerHTML = 'REST';
+      displayBG.classList.remove('to-pink-900');
+      displayBG.classList.add('to-green-900');
+    }
   }
 
 
