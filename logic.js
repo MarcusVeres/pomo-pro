@@ -6,6 +6,8 @@ var pp = (function(){
 
   // VARS
   let autoplay = true;
+  let pauseOnReset = false;
+
   let restTime = 3; //00;
   let workTime = 9; //00;
 
@@ -102,8 +104,13 @@ var pp = (function(){
     intervalFunction = null;
   }
   const resetCounter = () => {
-    pauseCounter();
+    if( pauseOnReset ) {
+      pauseCounter(); 
+    }
+
     ticks = 0;
+    initTimeObject();
+
     updateDisplays();
   }
 
