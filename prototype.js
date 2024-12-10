@@ -8,8 +8,8 @@ var pp = (function(){
   let autoplay = true;
   let pauseOnReset = false;
 
-  let restTime = 3; //00;
-  let workTime = 9; //00;
+  let restTime = 300;   // 5 minutes
+  let workTime = 1500;  // 25 minutes
 
 
   // INTERNAL 
