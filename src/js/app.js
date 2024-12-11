@@ -15,14 +15,15 @@ const app = {
     const ui = new UI();
 
     // SCROLL TO TIMER 
-    ui.showTimer();
+    // ui.showTimer();
 
     // SET DEPENDENCIES 
     timer.init( settings, ui );
-    ui.init( timer );
+    ui.init( settings , timer );
 
     // SET TIMER VALUES BASED ON SETTINGS 
     timer.refreshTimeObject();
+    ui.updateForms();
 
     // START 
     if( settings.autoplay ) {

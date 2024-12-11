@@ -8,6 +8,7 @@ export class UI
   constructor() 
   {
     // DEPENDENCIES 
+    this.settings = null;
     this.timer = null;
 
     // VARIABLES
@@ -23,12 +24,15 @@ export class UI
     this.displaySeconds = null;
     
     this.formSettings = null;
+    this.formSettingsRestTime = null;
+    this.formSettingsWorkTime = null;
 
     this.navSettings = null;
   }
-  init( timer )
+  init( settings , timer )
   {
     // this "setter" pattern is cleaner than using "app" since it makes dependencies explicit and controllable.
+    this.settings = settings;
     this.timer = timer;
 
     // NOTE - setting this from app.js, for now 
@@ -60,6 +64,9 @@ export class UI
   bindForms()
   {
     this.formSettings = document.getElementById("form-settings");
+    
+    this.formSettingsRestTime = document.getElementById("setting-rest-time");
+    this.formSettingsWorkTime = document.getElementById("setting-work-time");
 
     this.formSettings.addEventListener('submit', (e) => {
       e.preventDefault();
@@ -75,6 +82,22 @@ export class UI
   }
 
   // DISPLAYS
+  formatInputToMinutes( input )
+  {
+    // TODO : if contains colon 
+    // TODO : if contains decimal 
+
+    // DEFAULT - using seconds
+    return input / 60; 
+  }
+  formatInputToSeconds( input )
+  {
+    // TODO : if contains colon 
+    // TODO : if contains decimal 
+
+    // DEFAULT - using minutes
+    return input * 60; 
+  }
   formatTime( input )
   {
     let output = input;
@@ -84,6 +107,7 @@ export class UI
     }
     return output;
   }
+
   updateDisplays()
   {
     this.displayMinutes.innerHTML = this.formatTime( this.timer.timeObject.getMinutes() ); // ticks;
@@ -104,13 +128,22 @@ export class UI
       this.displayBG.classList.add('bg-rest');
     }
   }
+  updateForms()
+  {
+    this.formSettingsRestTime.value = this.formatInputToMinutes( this.settings.restTime );
+    this.formSettingsWorkTime.value = this.formatInputToMinutes( this.settings.workTime );
+  }
 
   // FORMS
   saveSettings()
   {
       console.log( "Save Settings." );
 
-      
+      let newRest = this.formatInputToSeconds( this.formSettingsRestTime.value );
+      let newWork = this.formatInputToSeconds( this.formSettingsWorkTime.value );
+
+      // TODO :: Optimize
+      console.log( `newRest: ${ newRest } , newWork: ${ newWork }` );
   }
 
   // NAV 
