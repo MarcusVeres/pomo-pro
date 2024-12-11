@@ -8,10 +8,10 @@ export class UI
   constructor() 
   {
     // DEPENDENCIES 
-    this.timer = UI.PANELS.TIMER;
+    this.timer = null;
 
     // VARIABLES
-    this.activePanel = null;
+    this.activePanel = UI.PANELS.TIMER;
 
     this.controlPause = null;
     this.controlReset = null;
@@ -51,6 +51,8 @@ export class UI
     this.displayMinutes = document.getElementById("display-minutes");
     this.displayMode = document.getElementById("display-mode");
     this.displaySeconds = document.getElementById("display-seconds");
+
+    this.displayMode.addEventListener("click" , () => { this.timer.switchModes(); });
   }
   bindNav()
   {
