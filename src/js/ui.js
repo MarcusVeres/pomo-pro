@@ -20,8 +20,10 @@ export class UI
     this.displayBG = null;
     this.displayMinutes = null;
     this.displayMode = null;
-    this.displaySeconds = null;  
+    this.displaySeconds = null;
     
+    this.formSettings = null;
+
     this.navSettings = null;
   }
   init( timer )
@@ -32,6 +34,7 @@ export class UI
     // NOTE - setting this from app.js, for now 
     this.bindControls();
     this.bindDisplays();
+    this.bindForms();
     this.bindNav();
   }
 
@@ -53,6 +56,19 @@ export class UI
     this.displaySeconds = document.getElementById("display-seconds");
 
     this.displayMode.addEventListener("click" , () => { this.timer.switchModes(); });
+  }
+  bindForms()
+  {
+    this.formSettings = document.getElementById("form-settings");
+
+    this.formSettings.addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      // 
+      console.log( "TODO :: Save form data." );
+      
+      this.showTimer();
+    });
   }
   bindNav()
   {
