@@ -153,7 +153,9 @@ export class UI
       this.config.save( newSettings );
 
       this.showTimer();
-      this.timer.refreshTimeObject();
+      
+      // this.timer.refreshTimeObject(); // If you want the timer to restart each time the save button is pressed. 
+      // TODO - could also checkDiff but this is getting way too complicated. 
   }
 
   // NAV 
