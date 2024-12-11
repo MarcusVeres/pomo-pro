@@ -19,7 +19,7 @@ const app = {
     ui.showTimer();
 
     // SET DEPENDENCIES 
-    timer.init( settings, ui );
+    timer.init( config, ui );
     ui.init( config , settings , timer );
 
     // SET TIMER VALUES BASED ON SETTINGS 

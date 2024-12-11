@@ -3,7 +3,7 @@ export class Timer
   constructor()
   {
     // DECLARE DEPENDENCIES 
-    this.settings = null;
+    this.config = null;
     this.ui = null;
 
     // VARIABLES 
@@ -13,10 +13,10 @@ export class Timer
     this.ticks = 0;
     this.timeObject = new Date();
   }
-  init( settings , ui )
+  init( config , ui )
   {
     // SET DEPENDENCIES 
-    this.settings = settings;
+    this.config = config;
     this.ui = ui;
   }
 
@@ -26,9 +26,9 @@ export class Timer
     this.timeObject.setHours(0,0,0,0); // Sets a blank date, today at midnight 
 
     if( this.isWorking ) {
-      this.timeObject.setSeconds( this.settings.workTime );
+      this.timeObject.setSeconds( this.config.userSettings.workTime );
     } else {
-      this.timeObject.setSeconds( this.settings.restTime );
+      this.timeObject.setSeconds( this.config.userSettings.restTime );
     }
 
     this.ui.updateDisplays();
@@ -87,7 +87,7 @@ export class Timer
 
     this.ui.updateDisplays();
 
-    if( this.settings.pauseOnReset ) {
+    if( this.config.userSettings.pauseOnReset ) {
       this.pauseCounter(); 
     } else {
       this.startCounter();

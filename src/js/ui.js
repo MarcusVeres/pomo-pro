@@ -9,7 +9,7 @@ export class UI
   {
     // DEPENDENCIES 
     this.config = null;
-    this.settings = null;
+    this.settings = null; // TODO - remove this 
     this.timer = null;
 
     // VARIABLES
