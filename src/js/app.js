@@ -10,19 +10,26 @@ const app = {
   start() {
 
     // DECLARE
-    const settings = Config.default;
+    const config = Config;
     const timer = new Timer();
     const ui = new UI();
 
-    // SET DEPENDENCIES 
-    timer.init( settings, ui );
-    ui.init( timer );
+    // LOAD DATA 
+    config.load();
 
-    // SET TIMER VALUES BASED ON SETTINGS 
+    // SCROLL TO TIMER 
+    ui.showTimer();
+
+    // SET DEPENDENCIES 
+    timer.init( config, ui );
+    ui.init( config , timer );
+
+    // SET TIMER VALUES BASED ON CONFIG 
     timer.refreshTimeObject();
+    ui.updateForms();
 
     // START 
-    if( settings.autoplay ) {
+    if( config.userSettings.autoplay ) {
       timer.startCounter();
     }    
   }
