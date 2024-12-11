@@ -1,11 +1,18 @@
 export class UI 
 {
+  static PANELS = Object.freeze({
+    SETTINGS: 'settings',
+    TIMER: 'timer'
+  });
+
   constructor() 
   {
     // DEPENDENCIES 
-    this.timer = null;
+    this.timer = UI.PANELS.TIMER;
 
     // VARIABLES
+    this.activePanel = null;
+
     this.controlPause = null;
     this.controlReset = null;
     this.controlStart = null;
@@ -14,6 +21,8 @@ export class UI
     this.displayMinutes = null;
     this.displayMode = null;
     this.displaySeconds = null;  
+    
+    this.navSettings = null;
   }
   init( timer )
   {
@@ -23,6 +32,7 @@ export class UI
     // NOTE - setting this from app.js, for now 
     this.bindControls();
     this.bindDisplays();
+    this.bindNav();
   }
 
   bindControls()
@@ -41,6 +51,12 @@ export class UI
     this.displayMinutes = document.getElementById("display-minutes");
     this.displayMode = document.getElementById("display-mode");
     this.displaySeconds = document.getElementById("display-seconds");
+  }
+  bindNav()
+  {
+    this.navSettings = document.getElementById("nav-settings");
+
+    this.navSettings.addEventListener("click" , () => { this.showSettings(); });
   }
 
   formatTime( input )
@@ -72,5 +88,30 @@ export class UI
       this.displayBG.classList.remove('bg-work');
       this.displayBG.classList.add('bg-rest');
     }
+  }
+
+  // NAV 
+  showSettings()
+  {
+    if( this.activePanel != UI.PANELS.SETTINGS )
+    {
+      document.querySelector('#panel-settings').scrollIntoView({ 
+        behavior: 'smooth'
+      })
+
+      this.activePanel = UI.PANELS.SETTINGS;
+    }
+    else 
+    {
+      this.showTimer();
+    }
+  }
+  showTimer()
+  {
+    document.querySelector('#panel-timer').scrollIntoView({ 
+      behavior: 'smooth'
+    })
+
+    this.activePanel = UI.PANELS.TIMER;
   }
 }
