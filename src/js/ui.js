@@ -9,7 +9,6 @@ export class UI
   {
     // DEPENDENCIES 
     this.config = null;
-    this.settings = null; // TODO - remove this 
     this.timer = null;
 
     // VARIABLES
@@ -24,17 +23,17 @@ export class UI
     this.displayMode = null;
     this.displaySeconds = null;
     
+    // TODO - rename these to be consistent
     this.formSettings = null;
     this.formSettingsRestTime = null;
     this.formSettingsWorkTime = null;
 
     this.navSettings = null;
   }
-  init( config , settings , timer )
+  init( config , timer )
   {
     // this "setter" pattern is cleaner than using "app" since it makes dependencies explicit and controllable.
     this.config = config;
-    this.settings = settings;
     this.timer = timer;
 
     // NOTE - setting this from app.js, for now 
@@ -132,8 +131,8 @@ export class UI
   }
   updateForms()
   {
-    this.formSettingsRestTime.value = this.formatInputToMinutes( this.settings.restTime );
-    this.formSettingsWorkTime.value = this.formatInputToMinutes( this.settings.workTime );
+    this.formSettingsRestTime.value = this.formatInputToMinutes( this.config.userSettings.restTime );
+    this.formSettingsWorkTime.value = this.formatInputToMinutes( this.config.userSettings.workTime );
   }
 
   // FORMS

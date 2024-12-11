@@ -11,23 +11,25 @@ const app = {
 
     // DECLARE
     const config = Config;
-    const settings = Config.load();
     const timer = new Timer();
     const ui = new UI();
+
+    // LOAD DATA 
+    config.load();
 
     // SCROLL TO TIMER 
     ui.showTimer();
 
     // SET DEPENDENCIES 
     timer.init( config, ui );
-    ui.init( config , settings , timer );
+    ui.init( config , timer );
 
-    // SET TIMER VALUES BASED ON SETTINGS 
+    // SET TIMER VALUES BASED ON CONFIG 
     timer.refreshTimeObject();
     ui.updateForms();
 
     // START 
-    if( settings.autoplay ) {
+    if( config.userSettings.autoplay ) {
       timer.startCounter();
     }    
   }
