@@ -8,6 +8,7 @@ export class UI
   constructor() 
   {
     // DEPENDENCIES 
+    this.config = null;
     this.settings = null;
     this.timer = null;
 
@@ -29,9 +30,10 @@ export class UI
 
     this.navSettings = null;
   }
-  init( settings , timer )
+  init( config , settings , timer )
   {
     // this "setter" pattern is cleaner than using "app" since it makes dependencies explicit and controllable.
+    this.config = config;
     this.settings = settings;
     this.timer = timer;
 
@@ -141,9 +143,18 @@ export class UI
 
       let newRest = this.formatInputToSeconds( this.formSettingsRestTime.value );
       let newWork = this.formatInputToSeconds( this.formSettingsWorkTime.value );
-
-      // TODO :: Optimize
       console.log( `newRest: ${ newRest } , newWork: ${ newWork }` );
+
+      const newSettings = {
+        ...this.config.userSettings,
+        restTime: newRest,
+        workTime: newWork
+      };
+
+      this.config.save( newSettings );
+
+      this.showTimer();
+      this.timer.refreshTimeObject();
   }
 
   // NAV 
