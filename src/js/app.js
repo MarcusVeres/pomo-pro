@@ -14,6 +14,9 @@ const app = {
     const timer = new Timer();
     const ui = new UI();
 
+    // SCROLL TO TIMER 
+    ui.showTimer();
+
     // SET DEPENDENCIES 
     timer.init( settings, ui );
     ui.init( timer );
