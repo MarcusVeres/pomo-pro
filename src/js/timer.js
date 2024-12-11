@@ -56,7 +56,10 @@ export class Timer
   startCounter()
   {
     console.log( "Starting..." );
-    if( !this.intervalFunction ) {
+    this.ui.showPause();
+
+    if( !this.intervalFunction ) 
+    {
       this.intervalFunction = setInterval( () => {
         
         console.log( "counting" );
@@ -74,6 +77,7 @@ export class Timer
   pauseCounter()
   {
     console.log( "Pausing..." );
+    this.ui.showPlay();
 
     clearInterval( this.intervalFunction );
     this.intervalFunction = null;

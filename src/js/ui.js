@@ -82,6 +82,18 @@ export class UI
     this.navSettings.addEventListener("click" , () => { this.showSettings(); });
   }
 
+  // CONTROLS 
+  showPlay()
+  {
+    this.controlPause.classList.add('hidden');
+    this.controlStart.classList.remove('hidden');
+  }
+  showPause()
+  {
+    this.controlStart.classList.add('hidden');
+    this.controlPause.classList.remove('hidden');
+  }
+
   // DISPLAYS
   formatInputToMinutes( input )
   {
