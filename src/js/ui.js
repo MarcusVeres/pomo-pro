@@ -63,10 +63,7 @@ export class UI
 
     this.formSettings.addEventListener('submit', (e) => {
       e.preventDefault();
-      
-      // 
-      console.log( "TODO :: Save form data." );
-      
+      this.saveSettings();      
       this.showTimer();
     });
   }
@@ -77,6 +74,7 @@ export class UI
     this.navSettings.addEventListener("click" , () => { this.showSettings(); });
   }
 
+  // DISPLAYS
   formatTime( input )
   {
     let output = input;
@@ -86,7 +84,6 @@ export class UI
     }
     return output;
   }
-
   updateDisplays()
   {
     this.displayMinutes.innerHTML = this.formatTime( this.timer.timeObject.getMinutes() ); // ticks;
@@ -106,6 +103,14 @@ export class UI
       this.displayBG.classList.remove('bg-work');
       this.displayBG.classList.add('bg-rest');
     }
+  }
+
+  // FORMS
+  saveSettings()
+  {
+      console.log( "Save Settings." );
+
+      
   }
 
   // NAV 
